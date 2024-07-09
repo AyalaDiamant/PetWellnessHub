@@ -1,16 +1,27 @@
-import React from 'react';
-import { Container, Typography, Box, List, ListItem, ListItemText, Divider, Link as MuiLink } from '@mui/material';
-import { Link } from 'react-router-dom';
-import backgroundImage from '../../assets/3778545.jpg'; 
+import React, { useState } from 'react';
+import { Container, Typography, Box, List, ListItem, ListItemText, Divider, Link as MuiLink, Button } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
+import backgroundImage from '../../assets/3778545.jpg';
+
 
 const Manager = () => {
+
+    const [userName, setUserName] = useState('');
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('user-name');
+        setUserName('');
+        navigate('/');
+    };
+
     return (
-        <Container style={{ 
-            backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(${backgroundImage})`, 
-            backgroundSize: 'cover', 
+        <Container style={{
+            backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(${backgroundImage})`,
+            backgroundSize: 'cover',
             backgroundPosition: 'center',
-            minHeight: '80vh', 
-            minWidth: '100vh', 
+            minHeight: '80vh',
+            minWidth: '100vh',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between'
@@ -66,6 +77,11 @@ const Manager = () => {
                         </MuiLink>
                     </ListItem>
                 </List>
+            </Box>
+            <Box mt={2}>
+                <Button variant="contained" onClick={handleLogout}>
+                    התנתקות
+                </Button>
             </Box>
         </Container>
     );
