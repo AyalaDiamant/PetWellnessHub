@@ -1,0 +1,7 @@
+{
+    "_id": 0,
+    "name": "Admin",
+    "password" : "Admin1Admin",
+    "email": "Admin@gmail.com",
+    "isAdmin" : true
+}
