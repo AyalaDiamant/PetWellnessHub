@@ -17,7 +17,7 @@ You can find the server project at the following repository link:
 
 To access the administrative options, use the following credentials:
 
-- Username: `Aadmin`
+- Username: `Admin`
 - Password: `Admin1Admin`
 
 ## Properties
