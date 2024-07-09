@@ -13,11 +13,9 @@ You can find the server project at the following repository link:
 
 
 
-## Admin credentials
+**When the project is first started, you need to log in as the administrator. This will create the admin user and the admin interface. Use the following credentials:**
 
-To access the administrative options, use the following credentials:
-
-- Username: `Aadmin`
+- Username: `Admin`
 - Password: `Admin1Admin`
 
 ## Properties
