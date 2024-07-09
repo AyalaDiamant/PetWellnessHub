@@ -11,8 +11,11 @@ const login = async (name: any, password: any) => {
             localStorage.setItem('user-name', name);
             localStorage.setItem('userId', response.data.userId);
         }
+        alert('התחברת בהצלחה! ')
         return response.data;
-    } catch (error) {
+    } catch (error: any) {
+        let errorMessage = error.response.data; 
+        alert(errorMessage); 
         console.error('Error during login:', error);
         throw error;
     }
@@ -32,8 +35,11 @@ const register = async (name: any, email: any, password: any) => {
         localStorage.setItem('userId', response.data.userId);
         console.log({ name, email, password });
         console.log('response.data', response.data);
+        alert('נרשמת בהצלחה! ')
         return response.data;
-    } catch (error) {
+    } catch (error: any) {
+        let errorMessage = error.response.data; 
+        alert(errorMessage); 
         console.error('Error during registration:', error);
         throw error;
     }

@@ -40,9 +40,9 @@ export const SignUp = () => {
             <Typography variant="h4">SignUp</Typography>
             <br />
             <form className="custom-form" onSubmit={handleSubmit}>
-                <TextField label="Name" variant="outlined" value={name} onChange={(e) => setName(e.target.value)} fullWidth /> <br />
-                <TextField label="Password" type="password" variant="outlined" value={password} onChange={(e) => setPassword(e.target.value)} fullWidth /> <br />
-                <TextField label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} fullWidth /> <br /> <br />
+                <TextField required label="Name" variant="outlined" value={name} onChange={(e) => setName(e.target.value)} fullWidth /> <br />
+                <TextField required label="Password" type="password" variant="outlined" value={password} onChange={(e) => setPassword(e.target.value)} fullWidth /> <br />
+                <TextField required label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} fullWidth /> <br /> <br />
                 <Button variant="contained" color="primary" type="submit">Connect</Button>
             </form>
         </div>

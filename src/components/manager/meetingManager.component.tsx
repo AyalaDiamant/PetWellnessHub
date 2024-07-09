@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { getAllMeetings, updateMeeting } from '../../api/meet.api';
 import { delateMeeting } from '../../api/meet.api'
 import { Meeting } from '../../interfaces/meeting.interface';
-import '../../style/meetingManager.css'
 import { Container, Typography, List, ListItem, ListItemText, Divider, Box, Button, IconButton, Stack, Card, CardContent, CardActions, Grid, FormControl, InputLabel, Select, MenuItem, TextField, Paper } from '@mui/material';
 
 

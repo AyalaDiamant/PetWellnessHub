@@ -12,8 +12,10 @@ import {
     CardContent,
     Grid,
 } from '@mui/material';
-import icon1 from '../assets/icon1.png'; 
-import icon2 from '../assets/icon2.png'; 
+import icon1 from '../assets/icon1.png';
+import icon2 from '../assets/icon2.png';
+import backgroundImage from '../assets/3778545.jpg';
+
 
 const Home = () => {
     const [userName, setUserName] = useState('');
@@ -34,6 +36,7 @@ const Home = () => {
 
     return (
         <div >
+
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6">האתר שלנו</Typography>
@@ -47,37 +50,44 @@ const Home = () => {
                         אנו מתמחים בשירותי וטרינריה לחיות מחמד ובכל מה שקשור לטיפול בחיות המחמד שלכם.
                     </Typography>
                 </Box>
-
-                <Box mt={4}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={6}>
-                            <Card>
-                                <CardContent>
-                                    <img src={icon1} alt="Description of Image 1" style={{ width: '50%' }} />
-                                    {/* Add more images or content */}
-                                    <Button variant="contained" component={Link} to="/sign-in">
-                                        היכנסו
-                                    </Button>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Card>
-                                <CardContent>
-                                <img src={icon2} alt="Description of Image 1" style={{ width: '50%' }} />
-
-                                    <Button variant="contained" component={Link} to="/sign-up">
-                                        הירשמו
-                                    </Button>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                    </Grid>
-                </Box>
-
-                {userName ? (
+                {!userName ? (
                     <Box mt={4}>
-                        <Typography variant="h5">ברוכים הבאים, {userName}!</Typography>
+                        <Grid container spacing={2}>
+                            <Grid item xs={6}>
+                                <Card>
+                                    <CardContent>
+                                        <img src={icon1} alt="Description of Image 1" style={{ width: '50%' }} />
+                                        <Button variant="contained" component={Link} to="/sign-in">
+                                            היכנסו
+                                        </Button>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Card>
+                                    <CardContent>
+                                        <img src={icon2} alt="Description of Image 1" style={{ width: '50%' }} />
+                                        <Button variant="contained" component={Link} to="/sign-up">
+                                            הירשמו
+                                        </Button>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        </Grid>
+                    </Box>
+
+                ) :
+                    <Box mt={4} style={{ 
+                        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(${backgroundImage})`, 
+                        backgroundSize: 'cover', 
+                        backgroundPosition: 'center',
+                        minHeight: '60vh', 
+                        minWidth: '60vh', 
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between'
+                    }}>
+                        <Typography variant="h5">ברוך הבא, {userName}!</Typography>
                         <Box mt={2}>
                             <Grid container spacing={2}>
                                 <Grid item xs={6}>
@@ -98,7 +108,7 @@ const Home = () => {
                             </Button>
                         </Box>
                     </Box>
-                ) : null}
+                }
             </Container>
         </div>
     );

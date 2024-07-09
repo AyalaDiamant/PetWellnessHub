@@ -40,7 +40,6 @@ export const Services = () => {
         <div>
             <Container maxWidth="lg">
                 <img src={logo} alt="Description of Image 1" style={{ width: '50%' }} />
-
                 <Box mt={4}>
                     <Typography variant="h2" gutterBottom>Our Services</Typography>
                 </Box>

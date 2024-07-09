@@ -13,7 +13,6 @@ import {
 } from '@mui/material';
 import logo from '../assets/LOGO.png';
 
-
 export const Meeting = () => {
     const [meeting, setMeeting] = useState<Meet[]>([]);
     const currentUserContext = useContext(CurrentContextUser);
@@ -36,18 +35,22 @@ export const Meeting = () => {
     }, []);
 
     return (
-        <div>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
             <Container maxWidth="md">
-            <img src={logo} alt="Description of Image 1" style={{ width: '50%' }} />
-                <Box mt={4}>
+                <img src={logo} alt="Description of Image 1" style={{ width: '50%', display: 'block', margin: '0 auto' }} />
+                <Box mt={4} textAlign="center">
                     <Typography variant="h3" gutterBottom>Your Meetings</Typography>
                 </Box>
 
                 {meeting.length ? (
-                    <List>
+                    <List style={{ 
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}>
                         {meeting.map((meet) => (
-                            <ListItem key={meet._id}>
-                                <Paper elevation={3} sx={{ p: 2 }}>
+                            <ListItem key={meet._id} style={{ width: '100%' }}>
+                                <Paper elevation={3} sx={{ p: 2, width: '100%' }}>
                                     <Stack direction="row" alignItems="center" spacing={1}>
                                         <Stack>
                                             <Typography variant="h6" color="primary">
@@ -69,7 +72,7 @@ export const Meeting = () => {
                         ))}
                     </List>
                 ) : (
-                    <Box mt={4}>
+                    <Box mt={4} textAlign="center">
                         <Typography variant="h5">You don't have any meetings yet.</Typography>
                     </Box>
                 )}

@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { addMeeting } from '../api/meet.api';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { CurrentContextUser } from '../context/user.context';
-import { Button, Container, TextField, Typography, Select, MenuItem, Box, FormControl, InputLabel, TextareaAutosize } from '@mui/material';
+import { Button, Container, TextField, Typography, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 
 const AppointmentForm = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -12,6 +12,7 @@ const AppointmentForm = () => {
   const [noteToBusiness, setNoteToBusiness] = useState("");
   const currentUserContext = useContext(CurrentContextUser);
   const { currentUser } = currentUserContext;
+  const navigate = useNavigate();
 
   const userId = currentUser._id;
 
@@ -26,11 +27,17 @@ const AppointmentForm = () => {
     };
 
     const response = await addMeeting(userId, data);
-    if (response.status == 201)
+    if (response.status === 201) {
       setAppointmentMessage(response.data);
-    if (response.status == 200)
+    }
+    if (response.status === 200) {
       setAppointmentMessage(`נקבע לך תור בשעה ${selectedTime} בתאריך ${selectedDate.toLocaleDateString()} ב ${selectedLocation}.`);
+      setTimeout(() => {
+        navigate('/');
+      }, 3000); 
+    }
   };
+  
   const handleLocationChange = (event: any) => {
     setSelectedLocation(event.target.value);
   };
@@ -44,12 +51,12 @@ const AppointmentForm = () => {
     setNoteToBusiness(event.target.value);
   };
 
-
   return (
     <Container>
       <form className="custom-form" onSubmit={handleSubmit}>
         <Typography variant="h5" gutterBottom>קבע תור</Typography>
-        <TextField
+        <TextField 
+          required
           label="תאריך"
           type="date"
           value={selectedDate.toISOString().substring(0, 10)}
@@ -60,7 +67,8 @@ const AppointmentForm = () => {
             shrink: true,
           }}
         />
-        <TextField
+        <TextField 
+          required
           label="שעה"
           type="time"
           value={selectedTime}
@@ -72,7 +80,7 @@ const AppointmentForm = () => {
           }}
         />
         <FormControl fullWidth margin="normal">
-          <InputLabel>מיקום</InputLabel>
+          <InputLabel required>מיקום</InputLabel>
           <Select value={selectedLocation} onChange={handleLocationChange}>
             <MenuItem value=""><em>בחר מיקום</em></MenuItem>
             <MenuItem value="סניף 1">סניף 1</MenuItem>
