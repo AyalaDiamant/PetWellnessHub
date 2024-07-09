@@ -27,8 +27,11 @@ export const MeetingManager = () => {
     }, [getMeeting]);
 
     const deleteMeeting = async (id: number) => {
-        await delateMeeting(id);
-        setGetMeeting(!getMeeting);
+        const userConfirmed = window.confirm('האם אתה בטוח שברצונך למחוק את הפגישה?');
+        if (userConfirmed) {
+            await delateMeeting(id);
+            setGetMeeting(!getMeeting);
+        }
     }
 
     const updateThisMeeting = (id: number) => {

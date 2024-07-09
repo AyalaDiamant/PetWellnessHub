@@ -25,9 +25,12 @@ export const ServicesManager = () => {
     }, [getService]);
 
     const deleteThisService = async (id: number) => {
-        const data = await deleteService(id);
-        alert(data);
-        setGetService(!getService);
+        const userConfirmed = window.confirm('האם אתה בטוח שברצונך למחוק את השירות?');
+        if (userConfirmed) {
+            const data = await deleteService(id);
+            alert(data);
+            setGetService(!getService);
+        }
     }
 
     const updateThisService = (id: number) => {

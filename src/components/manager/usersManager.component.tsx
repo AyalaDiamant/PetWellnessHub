@@ -25,8 +25,11 @@ export const usersManager = () => {
     }, [getArrUsers]);
 
     const deleteThisUser = async (id: number) => {
-        await delateUser(id);
-        setGetArrUsers(!getArrUsers);
+        const userConfirmed = window.confirm('האם אתה בטוח שברצונך למחוק את המשתמש?');
+        if (userConfirmed) {
+            await delateUser(id);
+            setGetArrUsers(!getArrUsers);
+        }
     }
 
     const updateThisUser = (id: number) => {
