@@ -1,16 +1,22 @@
 import axios from 'axios';
+// import { isAdmin } from './token.api';
 
 const API_URL = 'http://localhost:8001';
+let isRegister = true;
 
 const login = async (name: any, password: any) => {
     try {
-        if (name === 'Admin' && password === 'Admin1Admin') {
+        if (name === 'Admin' && password === 'Admin1Admin' && isRegister) {
             const adminData = {
                 name: 'Admin',
                 email: 'Admin@gmail.com',
                 isAdmin: true
             };
-            await register(adminData.name, adminData.email, password);
+            const res = await register(adminData.name, adminData.email, password);
+            if (res == 'User already exists.') {
+                isRegister = false;
+                login(name,password)
+            }
         }
         const response = await axios.post(`${API_URL}/Login`, { name, password });
         if (response) {
@@ -52,9 +58,15 @@ const register = async (name: any, email: any, password: any) => {
         return response.data;
     } catch (error: any) {
         let errorMessage = error.response.data;
-        alert(errorMessage);
-        console.error('Error during registration:', error);
-        throw error;
+        let isAdmin = false;
+        if (name === 'Admin' && password === 'Admin1Admin') {
+            isAdmin = true;
+        }
+        if (!isAdmin) {
+            alert(errorMessage);
+            console.error('Error during registration:', error);
+            throw error;
+        }
     }
 };
 

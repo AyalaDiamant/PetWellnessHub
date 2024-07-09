@@ -1,17 +1,30 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Container, Typography, Box, List, ListItem, ListItemText, Divider, Link as MuiLink, Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import backgroundImage from '../../assets/3778545.jpg';
+import { CurrentContextUser } from '../../context/user.context';
+import { User } from '../../interfaces/user.interface';
 
 
 const Manager = () => {
 
     const [userName, setUserName] = useState('');
     const navigate = useNavigate();
+    const currentUserContext = useContext(CurrentContextUser);
+    const { setCurrentUser } = currentUserContext;
 
+    const initialCurrentUser: User = {
+        _id: 0,
+        name: '',
+        password: '',
+        email: '',
+        isAdmin: false,
+    };
+    
     const handleLogout = () => {
-        localStorage.removeItem('user-name');
+        localStorage.clear();
         setUserName('');
+        setCurrentUser(initialCurrentUser)
         navigate('/');
     };
 
